@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vchin/mocha-spec-json-output-reporter.git"
+    "url": "git+https://github.com/ichirkin/mocha-json-output-reporter.git"
   },
   "author": "vchin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vchin/mocha-spec-json-output-reporter/issues"
+    "url": "https://github.com/ichirkin/mocha-json-output-reporter/issues"
   },
-  "homepage": "https://github.com/vchin/mocha-spec-json-output-reporter#readme",
+  "homepage": "https://github.com/ichirkin/mocha-json-output-reporter#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^7.2.0",
