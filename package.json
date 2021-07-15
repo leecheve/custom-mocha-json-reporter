@@ -22,6 +22,6 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^7.2.0",
-    "mocha-spec-json-output-reporter": "file:./lib"
+    "mocha-json-output-reporter": "file:./lib"
   }
 }
