@@ -1,7 +1,5 @@
 # mocha-json-output-reporter
-mocha spec + json output file reporter
-
-Combines the spec and json reporter but instead of outputting the json to the console, writes it to a file
+mocha json output file reporter
 
 # Install
 ```
@@ -10,17 +8,17 @@ npm install --save-dev mocha-json-output-reporter
 
 # Run with Mocha
 ```
-mocha -R mocha-json-output-reporter
+mocha --reporter mocha-json-output-reporter
 ```
 
 # Output file
-The default file output will be `mocha-output-<date>` in the current working directory
+The default file output will be `test-report.json` in the current working directory
 
 ## Reporter Options
 * output - specify exact name of output file
 
 ```
-mocha --reporter-options output=my-file.json
+mocha --reporter mocha-json-output-reporter --reporter-options output=my-file.json
 ```
 
 ### Example Output - Default Mode
