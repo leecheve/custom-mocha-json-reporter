@@ -1,6 +1,6 @@
 {
   "name": "mocha-json-output-reporter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "mocha spec + json output file reporter",
   "scripts": {
     "sample-test": "mocha test/sample-test.js -R mocha-spec-json-output-reporter --reporter-options fileName=mocha-output.json",
