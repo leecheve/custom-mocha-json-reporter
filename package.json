@@ -1,7 +1,7 @@
 {
   "name": "mocha-json-output-reporter",
   "version": "2.0.1",
-  "description": "default mocha spec reporter + default mocha json reporter output file",
+  "description": "mocha json reporter output file",
   "main": "reporter.js",
   "scripts": {
     "lint": "eslint reporter.js"
