@@ -1,27 +1,23 @@
 {
   "name": "mocha-json-output-reporter",
-  "version": "1.0.2",
-  "description": "mocha spec + json output file reporter",
+  "version": "2.0.0",
+  "description": "default mocha spec reporter + default mocha json reporter output file",
+  "main": "reporter.js",
   "scripts": {
-    "sample-test": "mocha test/sample-test.js -R mocha-spec-json-output-reporter --reporter-options fileName=mocha-output.json",
-    "sample-test-hierarchy": "mocha test/sample-test.js -R mocha-spec-json-output-reporter --reporter-options fileName=mocha-output-hierarchy.json,hierarchy=true",
-    "sample-test-all": "mocha test/sample-test*.js -R mocha-spec-json-output-reporter --reporter-options fileName=mocha-output-hierarchy.json,hierarchy=true",
-    "test": "mocha test/validate-output*.js",
-    "publish": "npm publish lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ichirkin/mocha-json-output-reporter.git"
+    "lint": "eslint reporter.js"
   },
   "author": "vchin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ichirkin/mocha-json-output-reporter/issues"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ichirkin/mocha-json-output-reporter"
   },
-  "homepage": "https://github.com/ichirkin/mocha-json-output-reporter#readme",
-  "devDependencies": {
-    "chai": "^4.1.2",
+  "license": "MIT",
+  "dependencies": {
     "mocha": "^7.2.0",
-    "mocha-json-output-reporter": "file:./lib"
+    "moment": "^2.21.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1"
   }
 }

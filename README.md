@@ -17,12 +17,10 @@ mocha -R mocha-json-output-reporter
 The default file output will be `mocha-output-<date>` in the current working directory
 
 ## Reporter Options
-* fileName - specify exact name of output file
-* filePath - specify exact directory to put output file - this path must exist
-* hierarchy - (true|false) - if enabled will place inner describe blocks as inner test suites of the parent describe block
+* output - specify exact name of output file
 
 ```
-mocha --reporter-options fileName=my-file.json,filePath=/mydirectory/subfolder,hierarchy=true
+mocha --reporter-options output=my-file.json
 ```
 
 ### Example Output - Default Mode
@@ -30,289 +28,37 @@ mocha --reporter-options fileName=my-file.json,filePath=/mydirectory/subfolder,h
 {
   "stats": {
     "suites": 3,
-    "tests": 6,
-    "passes": 3,
-    "pending": 1,
-    "failures": 2,
-    "start": "2018-03-12T21:38:41.618Z",
-    "end": "2018-03-12T21:38:41.634Z",
-    "duration": 16
+    "tests": 9,
+    "passes": 9,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-07-15T20:06:25.845Z",
+    "end": "2021-07-15T20:06:27.489Z",
+    "duration": 1644
   },
-  "suites": [
+  "tests": [
     {
-      "title": "suite 1",
-      "tests": [
-        {
-          "title": "test pass",
-          "duration": 0,
-          "result": "passed",
-          "err": {}
-        },
-        {
-          "title": "test fail",
-          "duration": 0,
-          "result": "failed",
-          "err": {
-            "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:7:32)",
-            "message": "null == true",
-            "generatedMessage": true,
-            "name": "AssertionError [ERR_ASSERTION]",
-            "code": "ERR_ASSERTION",
-            "actual": null,
-            "expected": true,
-            "operator": "=="
-          }
-        },
-        {
-          "title": "skipped test",
-          "result": "pending",
-          "err": {}
-        }
-      ]
-    },
-    {
-      "title": "nested describe",
-      "tests": [
-        {
-          "title": "nested test pass",
-          "duration": 0,
-          "result": "passed",
-          "err": {}
-        },
-        {
-          "title": "nested test fail",
-          "duration": 0,
-          "result": "failed",
-          "err": {
-            "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:11:41)",
-            "message": "null == true",
-            "generatedMessage": true,
-            "name": "AssertionError [ERR_ASSERTION]",
-            "code": "ERR_ASSERTION",
-            "actual": null,
-            "expected": true,
-            "operator": "=="
-          }
-        }
-      ]
-    },
-    {
-      "title": "suite 2",
-      "tests": [
-        {
-          "title": "suite2 pass",
-          "duration": 0,
-          "result": "passed",
-          "err": {}
-        }
-      ]
-    }
-  ],
-  "pending": [
-    {
-      "title": "skipped test",
-      "result": "pending",
-      "err": {}
-    }
-  ],
-  "failures": [
-    {
-      "title": "test fail",
-      "duration": 0,
-      "result": "failed",
-      "err": {
-        "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:7:32)",
-        "message": "null == true",
-        "generatedMessage": true,
-        "name": "AssertionError [ERR_ASSERTION]",
-        "code": "ERR_ASSERTION",
-        "actual": null,
-        "expected": true,
-        "operator": "=="
-      }
-    },
-    {
-      "title": "nested test fail",
-      "duration": 0,
-      "result": "failed",
-      "err": {
-        "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:11:41)",
-        "message": "null == true",
-        "generatedMessage": true,
-        "name": "AssertionError [ERR_ASSERTION]",
-        "code": "ERR_ASSERTION",
-        "actual": null,
-        "expected": true,
-        "operator": "=="
-      }
-    }
-  ],
-  "passes": [
-    {
-      "title": "test pass",
-      "duration": 0,
-      "result": "passed",
+      "title": "should success registration with granted access",
+      "fullTitle": "account invitation behaviour account invitation behaviour with the enabled access-policy should success registration with granted access",
+      "file": "/tests/account.spec.js",
+      "duration": 235,
+      "currentRetry": 0,
       "err": {}
     },
     {
-      "title": "nested test pass",
-      "duration": 0,
-      "result": "passed",
+      "title": "success:becomeMemberByInvitationCode",
+      "fullTitle": "account invitation behaviour account invitation behaviour with the enabled access-policy success:becomeMemberByInvitationCode",
+      "file": "/tests/account.spec.js",
+      "duration": 63,
+      "currentRetry": 0,
       "err": {}
     },
     {
-      "title": "suite2 pass",
-      "duration": 0,
-      "result": "passed",
-      "err": {}
-    }
-  ]
-}
-```
-
-### Example Output - Hierarchy
-```
-{
-  "stats": {
-    "suites": 3,
-    "tests": 6,
-    "passes": 3,
-    "pending": 1,
-    "failures": 2,
-    "start": "2018-03-12T21:39:37.802Z",
-    "end": "2018-03-12T21:39:37.817Z",
-    "duration": 15
-  },
-  "suites": [
-    {
-      "title": "suite 1",
-      "tests": [
-        {
-          "title": "test pass",
-          "duration": 0,
-          "result": "passed",
-          "err": {}
-        },
-        {
-          "title": "test fail",
-          "duration": 2,
-          "result": "failed",
-          "err": {
-            "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:7:32)",
-            "message": "null == true",
-            "generatedMessage": true,
-            "name": "AssertionError [ERR_ASSERTION]",
-            "code": "ERR_ASSERTION",
-            "actual": null,
-            "expected": true,
-            "operator": "=="
-          }
-        },
-        {
-          "title": "skipped test",
-          "result": "pending",
-          "err": {}
-        }
-      ],
-      "suites": [
-        {
-          "title": "nested describe",
-          "tests": [
-            {
-              "title": "nested test pass",
-              "duration": 0,
-              "result": "passed",
-              "err": {}
-            },
-            {
-              "title": "nested test fail",
-              "duration": 0,
-              "result": "failed",
-              "err": {
-                "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:11:41)",
-                "message": "null == true",
-                "generatedMessage": true,
-                "name": "AssertionError [ERR_ASSERTION]",
-                "code": "ERR_ASSERTION",
-                "actual": null,
-                "expected": true,
-                "operator": "=="
-              }
-            }
-          ],
-          "suites": []
-        }
-      ]
-    },
-    {
-      "title": "suite 2",
-      "tests": [
-        {
-          "title": "suite2 pass",
-          "duration": 0,
-          "result": "passed",
-          "err": {}
-        }
-      ],
-      "suites": []
-    }
-  ],
-  "pending": [
-    {
-      "title": "skipped test",
-      "result": "pending",
-      "err": {}
-    }
-  ],
-  "failures": [
-    {
-      "title": "test fail",
-      "duration": 2,
-      "result": "failed",
-      "err": {
-        "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:7:32)",
-        "message": "null == true",
-        "generatedMessage": true,
-        "name": "AssertionError [ERR_ASSERTION]",
-        "code": "ERR_ASSERTION",
-        "actual": null,
-        "expected": true,
-        "operator": "=="
-      }
-    },
-    {
-      "title": "nested test fail",
-      "duration": 0,
-      "result": "failed",
-      "err": {
-        "stack": "AssertionError [ERR_ASSERTION]: null == true\n    at Context.it (test\\sample-test.js:11:41)",
-        "message": "null == true",
-        "generatedMessage": true,
-        "name": "AssertionError [ERR_ASSERTION]",
-        "code": "ERR_ASSERTION",
-        "actual": null,
-        "expected": true,
-        "operator": "=="
-      }
-    }
-  ],
-  "passes": [
-    {
-      "title": "test pass",
-      "duration": 0,
-      "result": "passed",
-      "err": {}
-    },
-    {
-      "title": "nested test pass",
-      "duration": 0,
-      "result": "passed",
-      "err": {}
-    },
-    {
-      "title": "suite2 pass",
-      "duration": 0,
-      "result": "passed",
+      "title": "failed:becomeMemberByInvitationCode:invalidInviteToken:wrongUser ",
+      "fullTitle": "account invitation behaviour account invitation behaviour with the enabled access-policy failed:becomeMemberByInvitationCode:invalidInviteToken:wrongUser ",
+      "file": "/tests/account.spec.js",
+      "duration": 18,
+      "currentRetry": 0,
       "err": {}
     }
   ]
