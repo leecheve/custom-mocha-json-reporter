@@ -1,16 +1,16 @@
-# mocha-spec-json-output-reporter
+# mocha-json-output-reporter
 mocha spec + json output file reporter
 
 Combines the spec and json reporter but instead of outputting the json to the console, writes it to a file
 
 # Install
 ```
-npm install --save-dev mocha-spec-json-output-reporter
+npm install --save-dev mocha-json-output-reporter
 ```
 
 # Run with Mocha
 ```
-mocha -R mocha-spec-json-output-reporter
+mocha -R mocha-json-output-reporter
 ```
 
 # Output file
