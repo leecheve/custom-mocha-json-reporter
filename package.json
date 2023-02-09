@@ -1,6 +1,6 @@
 {
   "name": "mocha-json-output-reporter",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "mocha json reporter output file",
   "main": "reporter.js",
   "scripts": {
