@@ -12,12 +12,13 @@
     "url": "https://github.com/ichirkin/mocha-json-output-reporter"
   },
   "license": "MIT",
-  "dependencies": {
-    "mocha": "^7.2.0",
-    "moment": "^2.21.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1"
+  },
+  "peerDependencies": {
+    "mocha": "^10.0.0",
+    "moment": "^2.21.0"
   }
 }
