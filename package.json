@@ -9,7 +9,7 @@
   "author": "vchin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ichirkin/mocha-json-output-reporter"
+    "url": "https://github.com/leecheve/custom-mocha-json-reporter"
   },
   "license": "MIT",
   "dependencies": {},
