@@ -128,7 +128,7 @@ function clean(test) {
     file: test.file,
     duration: test.duration,
     currentRetry: test.currentRetry(),
-    err: err.message || cleanCycles(err),
+    err: cleanCycles(err),
   };
 }
 
