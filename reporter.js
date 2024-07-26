@@ -58,43 +58,52 @@ function JSONReporter(runner, options) {
   });
 
   runner.once(EVENT_RUN_END, function () {
-    const labels = {
-      ...(tests?.[0] || failures?.[0]).ctx.labels,
+    const suiteLabels = {
+      ...((tests?.[0] || failures?.[0]).ctx?.labels || {})
     };
-    Object.entries(labels).forEach(([key, value]) => {
+    Object.entries(suiteLabels).forEach(([key, value]) => {
       if (key.startsWith('label_')) return;
-      labels['label_' + key] = value;
-      delete labels[key];
+      suiteLabels['label_' + key] = value;
+      delete suiteLabels[key];
     });
 
     const testIds = tests.map((test) => test.id);
-    testIds.map((testId) => delete labels['label_' + testId]);
+    testIds.map((testId) => delete suiteLabels['label_' + testId]);
 
     var obj = {
       stats: self.stats,
-      tests: tests.map(clean),
-      pending: pending.map(clean),
-      failures: failures.map(clean),
-      passes: passes.map(clean),
+      tests: tests.map((t) => clean(t, suiteLabels)),
+      pending: pending.map((t) => clean(t, suiteLabels)),
+      failures: failures.map((t) => clean(t, suiteLabels)),
+      passes: passes.map((t) => clean(t, suiteLabels))
     };
 
     const runId = runner.suite.id;
-    const app = 'qa-tests';
+    const label_app = 'qa-tests';
 
-    console.log(JSON.stringify({ app, runId, dataType: 'stats', ...labels, ...obj.stats }));
-    obj.pending.map((test) =>
-      console.log(JSON.stringify({ app, runId, dataType: 'test', status: 'pending', ...test }))
-    );
-    obj.failures.map((test) =>
-      console.log(JSON.stringify({ app, runId, dataType: 'test', status: 'failure', ...test }))
-    );
-    obj.passes.map((test) => console.log(JSON.stringify({ app, runId, dataType: 'test', status: 'pass', ...test })));
+    const reportData = [];
+    const statsData = { label_app, runId, dataType: 'stats', ...suiteLabels, ...obj.stats };
+    reportData.push(statsData);
+    obj.pending.map((test) => {
+      const pendingData = { label_app, runId, dataType: 'test', status: 'pending', ...test };
+      reportData.push(pendingData);
+    });
+    obj.failures.map((test) => {
+      const failData = { label_app, runId, dataType: 'test', status: 'failure', ...test };
+      reportData.push(failData);
+    });
+    obj.passes.map((test) => {
+      const passData = { label_app, runId, dataType: 'test', status: 'pass', ...test };
+      reportData.push(passData);
+    });
 
     runner.testResults = obj;
 
     fs.writeFileSync(
-      options.reporterOptions && options.reporterOptions.output ? options.reporterOptions.output : 'test-report.json',
-      JSON.stringify(obj, null, 2)
+      options.reporterOptions && options.reporterOptions.output
+        ? options.reporterOptions.output
+        : 'test-report-loki.json',
+      JSON.stringify(reportData, null, 2)
     );
   });
 }
@@ -107,7 +116,7 @@ function JSONReporter(runner, options) {
  * @param {Object} test
  * @return {Object}
  */
-function clean(test) {
+function clean(test, suiteLabels) {
   var err = test.err || {};
   if (err instanceof Error) {
     err = errorJSON(err);
@@ -123,12 +132,13 @@ function clean(test) {
 
   return {
     ...labels,
+    ...suiteLabels,
     title: test.title,
     fullTitle: test.fullTitle(),
     file: test.file,
     duration: test.duration,
     currentRetry: test.currentRetry(),
-    err: cleanCycles(err),
+    err: cleanCycles(err)
   };
 }
 
