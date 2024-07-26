@@ -138,7 +138,7 @@ function clean(test, suiteLabels) {
     file: test.file,
     duration: test.duration,
     currentRetry: test.currentRetry(),
-    err: cleanCycles(err)
+    err: err.message || cleanCycles(err)
   };
 }
 
